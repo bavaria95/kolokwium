@@ -32,11 +32,11 @@ void bubble_sort(int arr[], int n)
 				swap(arr[j], arr[j+1]);
 	}
 
-void quickSort(int arr[], int left, int right)
+void quickSort_basic(int arr[], int left, int right)
 {
       int i = left, j = right;
       int tmp;
-      int pivot = arr[(left + right) / 2];
+      int pivot = arr[left + (right - left)/2]; 
 
       while (i <= j)
       {
@@ -46,26 +46,31 @@ void quickSort(int arr[], int left, int right)
                   j--;
             if (i <= j)
             {
-                  tmp = arr[i];
-                  arr[i] = arr[j];
-                  arr[j] = tmp;
+                  swap(arr[i], arr[j]);
                   i++;
                   j--;
             	}
       		}
 
       if (left < j)
-            quickSort(arr, left, j);
+            quickSort_basic(arr, left, j);
       if (i < right)
-            quickSort(arr, i, right);
+            quickSort_basic(arr, i, right);
     	}
+
+void quickSort()
+{
+	quickSort_basic(arr, 0, 99);
+	for (int i = 0; i < n/2; i++)
+		swap(arr[i], arr[n - i - 1]);
+	}
 
 int main()
 { 
 	srand(time(NULL));
 	for(int i = 0; i < n ; i++)
         arr[i] = rand() % 101;
-    // quickSort(arr, 0, 100);
-    bubble_sort(arr, n);
+    quickSort();
+    // bubble_sort(arr, n);
     write();
 	}
