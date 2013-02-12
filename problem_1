@@ -1,5 +1,6 @@
-#include <iostream>
-#include <ctime>
+#include<iostream>
+#include<ctime>
+#include<stdlib.h>
 
 using namespace std;
 
@@ -7,17 +8,64 @@ const int n = 100;
 
 int arr[n];
 
-void write()
+void swap(int &a, int &b)
 {
-  for (int i = 0; i < n; i++)
-		cout << arr[i] << "\t";
-	cout << "\n";
+	if (&a == &b)
+		return ;
+	a^=b;
+	b^=a;
+	a^=b;
 	}
 
-int main()
+void write()
 {
-	srand(time(NULL));
 	for (int i = 0; i < n; i++)
-		arr[i] = rand()%101;
-	write();
+		cout << arr[i] << " ";
+	cout << "\n\n";
+	}
+
+void bubble_sort(int arr[], int n)  
+{   
+	for(int i = n - 2; i >= 0; i--)   
+    	for(int j = 0; j <= i; j++)  
+			if (arr[j] < arr[j+1])
+				swap(arr[j], arr[j+1]);
+	}
+
+void quickSort(int arr[], int left, int right)
+{
+      int i = left, j = right;
+      int tmp;
+      int pivot = arr[(left + right) / 2];
+
+      while (i <= j)
+      {
+            while (arr[i] < pivot)
+                  i++;
+            while (arr[j] > pivot)
+                  j--;
+            if (i <= j)
+            {
+                  tmp = arr[i];
+                  arr[i] = arr[j];
+                  arr[j] = tmp;
+                  i++;
+                  j--;
+            	}
+      		}
+
+      if (left < j)
+            quickSort(arr, left, j);
+      if (i < right)
+            quickSort(arr, i, right);
+    	}
+
+int main()
+{ 
+	srand(time(NULL));
+	for(int i = 0; i < n ; i++)
+        arr[i] = rand() % 101;
+    // quickSort(arr, 0, 100);
+    bubble_sort(arr, n);
+    write();
 	}
