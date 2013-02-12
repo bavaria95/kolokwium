@@ -1,0 +1,23 @@
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+const int n = 100;
+
+int arr[n];
+
+void write()
+{
+  for (int i = 0; i < n; i++)
+		cout << arr[i] << "\t";
+	cout << "\n";
+	}
+
+int main()
+{
+	srand(time(NULL));
+	for (int i = 0; i < n; i++)
+		arr[i] = rand()%101;
+	write();
+	}
