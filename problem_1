@@ -1,6 +1,7 @@
-#include<iostream>
-#include<ctime>
-#include<stdlib.h>
+#include <iostream>
+#include <ctime>
+#include <stdlib.h>
+#include <list>
 
 using namespace std;
 
@@ -8,7 +9,7 @@ const int n = 100;
 
 int arr[n];
 
-void swap(int &a, int &b)
+void swap(int &a, int &b)     /*swapping two elements*/
 {
 	if (&a == &b)
 		return ;
@@ -17,14 +18,14 @@ void swap(int &a, int &b)
 	a^=b;
 	}
 
-void write()
+void write()                  /*write array's elements*/
 {
 	for (int i = 0; i < n; i++)
 		cout << arr[i] << " ";
 	cout << "\n\n";
 	}
 
-void bubble_sort(int arr[], int n)  
+void bubble_sort(int arr[], int n)    /*sorting array with bubble sort*/
 {   
 	for(int i = n - 2; i >= 0; i--)   
     	for(int j = 0; j <= i; j++)  
@@ -32,7 +33,7 @@ void bubble_sort(int arr[], int n)
 				swap(arr[j], arr[j+1]);
 	}
 
-void quickSort_basic(int arr[], int left, int right)
+void quickSort_basic(int arr[], int left, int right)    /*sorting array with quick sort*/
 {
       int i = left, j = right;
       int tmp;
@@ -58,7 +59,7 @@ void quickSort_basic(int arr[], int left, int right)
             quickSort_basic(arr, i, right);
     	}
 
-void quickSort()
+void quickSort()                    /*call function quick sort and reverse gotten array*/
 {
 	quickSort_basic(arr, 0, 99);
 	for (int i = 0; i < n/2; i++)
@@ -73,4 +74,12 @@ int main()
     quickSort();
     // bubble_sort(arr, n);
     write();
+    list <int> myList;
+    list <int>::iterator pointer;
+    for (int i = 0; i < n; i++)
+      myList.push_back(arr[i]);
+    for (pointer = myList.begin(); pointer != myList.end(); pointer++)
+      cout << *pointer << " ";
+    cout << "\n\n";
+    int s = 32;
 	}
