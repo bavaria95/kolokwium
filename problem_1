@@ -13,7 +13,7 @@ list <int> myList;
 
 list <int>::iterator pointer;
 
-void swap(int &a, int &b)     /*swapping two elements*/
+void swap(int &a, int &b)            /*swapping two elements*/
 {
 	if (&a == &b)
 		return ;
@@ -22,14 +22,14 @@ void swap(int &a, int &b)     /*swapping two elements*/
 	a^=b;
 	}
 
-void write_array()                  /*write array's elements*/
+void write_array()               /*write array's elements*/
 {
 	for (int i = 0; i < n; i++)
 		cout << arr[i] << " ";
 	cout << "\n\n";
 	}
 
-void bubble_sort(int arr[], int n)    /*sorting array with bubble sort*/
+void bubble_sort(int arr[], int n)      /*sorting array with bubble sort*/
 {   
 	for(int i = n - 2; i >= 0; i--)   
     	for(int j = 0; j <= i; j++)  
@@ -37,11 +37,10 @@ void bubble_sort(int arr[], int n)    /*sorting array with bubble sort*/
 				swap(arr[j], arr[j+1]);
 	}
 
-void quickSort_basic(int arr[], int left, int right)    /*sorting array with quick sort*/
+void quickSort_basic(int arr[], int begin, int end)       /*sorting array with quick sort*/
 {
-      int i = left, j = right;
-      int tmp;
-      int pivot = arr[left + (right - left)/2]; 
+      int i = begin, j = end;
+      int pivot = arr[begin + (end - begin)/2]; 
 
       while (i <= j)
       {
@@ -57,13 +56,13 @@ void quickSort_basic(int arr[], int left, int right)    /*sorting array with qui
             	}
       		}
 
-      if (left < j)
-            quickSort_basic(arr, left, j);
-      if (i < right)
-            quickSort_basic(arr, i, right);
+      if (begin < j)
+            quickSort_basic(arr, begin, j);
+      if (i < end)
+            quickSort_basic(arr, i, end);
     	}
 
-void quickSort()                    /*call function quick sort and reverse gotten array*/
+void quickSort()                  /*call function quick sort and reverse gotten array*/
 {
 	quickSort_basic(arr, 0, 99);
 	for (int i = 0; i < n/2; i++)
@@ -76,7 +75,7 @@ void write_list()                 /*write list's elements*/
       cout << *pointer << " ";
   }
 
-int linear_search(int target)     /*searching linearly target number in list*/ 
+int linear_search(int target)         /*searching linearly target number in list*/ 
 {
   int count = 0;
   for (pointer = myList.begin(); pointer != myList.end(); pointer++)
@@ -98,7 +97,6 @@ int main()
     myList.push_back(arr[i]);             
     write_list();
     cout << "\n\n";
-    int s = 37;
-    cout << linear_search(s);
-    cout << count << "\n\n";
+    /* int s = 37;
+    cout << linear_search(s) << "\n\n";*/
 	}
