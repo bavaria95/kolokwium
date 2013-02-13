@@ -9,6 +9,10 @@ const int n = 100;
 
 int arr[n];
 
+list <int> myList;
+
+list <int>::iterator pointer;
+
 void swap(int &a, int &b)     /*swapping two elements*/
 {
 	if (&a == &b)
@@ -18,7 +22,7 @@ void swap(int &a, int &b)     /*swapping two elements*/
 	a^=b;
 	}
 
-void write()                  /*write array's elements*/
+void write_array()                  /*write array's elements*/
 {
 	for (int i = 0; i < n; i++)
 		cout << arr[i] << " ";
@@ -66,6 +70,21 @@ void quickSort()                    /*call function quick sort and reverse gotte
 		swap(arr[i], arr[n - i - 1]);
 	}
 
+void write_list()                 /*write list's elements*/
+{
+  for (pointer = myList.begin(); pointer != myList.end(); pointer++)
+      cout << *pointer << " ";
+  }
+
+int linear_search(int target)     /*searching linearly target number in list*/ 
+{
+  int count = 0;
+  for (pointer = myList.begin(); pointer != myList.end(); pointer++)
+      if (*pointer == target)
+        count++;
+  return count;
+    }
+
 int main()
 { 
 	srand(time(NULL));
@@ -73,13 +92,13 @@ int main()
         arr[i] = rand() % 101;
     quickSort();
     // bubble_sort(arr, n);
-    write();
-    list <int> myList;
-    list <int>::iterator pointer;
-    for (int i = 0; i < n; i++)
-      myList.push_back(arr[i]);
-    for (pointer = myList.begin(); pointer != myList.end(); pointer++)
-      cout << *pointer << " ";
+    write_array();
+
+    for (int i = 0; i < n; i++)             /*transfer elements from array to list*/
+    myList.push_back(arr[i]);             
+    write_list();
     cout << "\n\n";
-    int s = 32;
+    int s = 37;
+    cout << linear_search(s);
+    cout << count << "\n\n";
 	}
