@@ -70,28 +70,19 @@ void quickSort()                  /*call function quick sort and reverse gotten 
 		swap(arr[i], arr[n - i - 1]);
 	}
 
-/*void SelectionSort(int *anArray, int nSize)
+void SelectionSort(int *arr, int n)
 {
-    using namespace std;
-    for (int nStartIndex= 0; nStartIndex < nSize; nStartIndex++)
+    for (int i = 0; i < n; i++)
     {
-        int nBestIndex = nStartIndex;
- 
-        // Search through every element starting at nStartIndex+1
-        for (int nCurrentIndex = nStartIndex + 1; nCurrentIndex < nSize; nCurrentIndex++)
-        {
-            // Note that we are using the user-defined comparison here
-            if (anArray[nCurrentIndex] < anArray[nBestIndex]) // COMPARISON DONE HERE
-                nBestIndex = nCurrentIndex;
-        }
- 
-        // Swap our start element with our best element
-        swap(anArray[nStartIndex], anArray[nBestIndex]);
+        int m = i;
+        for (int j = i + 1; j < n; j++)
+            if (arr[j] < arr[m])
+                m = j;
+        swap(arr[i], arr[m]);
+      }
     }
-}
-*/
 
-int search_count(int target)
+int search_count(int target)            /*searching target value in list and return number of target's entries*/
 {
   int count = 0;
   list <int>::iterator pointer;
@@ -125,8 +116,9 @@ int main()
 	srand(time(NULL));
 	for(int i = 0; i < n ; i++)
         arr[i] = rand() % 101;
-    quickSort();
+    //quickSort();
     // bubble_sort(arr, n);
+    SelectionSort(arr, n);
     write_array();
 
   for (int i = 0; i < n; i++)             /*transfer elements from array to list*/
