@@ -2,6 +2,7 @@
 #include <ctime>
 #include <stdlib.h>
 #include <list>
+#include <algorithm>
 
 using namespace std;
 
@@ -69,13 +70,35 @@ void quickSort()                  /*call function quick sort and reverse gotten 
 		swap(arr[i], arr[n - i - 1]);
 	}
 
-void write_list()                 /*write list's elements*/
+bool search(int target)             /*return bool is target value in list*/
 {
-  for (pointer = myList.begin(); pointer != myList.end(); pointer++)
-      cout << *pointer << " ";
+  if (find(myList.begin(), myList.end(), target) != myList.end())
+    return true;
+  else
+      return false;
   }
 
-int linear_search(int target)         /*searching linearly target number in list*/ 
+int search_count(int target)
+{
+  int count = 0;
+  list <int>::iterator pointer;
+  pointer = myList.begin();
+  bool is = search(target);
+  if (is)
+    if (*pointer++ == target) 
+    {
+      count++;
+      while (*pointer == target)
+      {
+        count++;
+        pointer++;
+        }
+      }
+    return is;
+
+  }
+
+int linear_search(int target)         /*searching linearly target value in list*/ 
 {
   int count = 0;
   for (pointer = myList.begin(); pointer != myList.end(); pointer++)
@@ -83,6 +106,12 @@ int linear_search(int target)         /*searching linearly target number in list
         count++;
   return count;
     }
+
+void write_list()                 /*write list's elements*/
+{
+  for (pointer = myList.begin(); pointer != myList.end(); pointer++)
+      cout << *pointer << " ";
+  }
 
 int main()
 { 
@@ -93,10 +122,11 @@ int main()
     // bubble_sort(arr, n);
     write_array();
 
-    for (int i = 0; i < n; i++)             /*transfer elements from array to list*/
-    myList.push_back(arr[i]);             
-    write_list();
-    cout << "\n\n";
+  for (int i = 0; i < n; i++)             /*transfer elements from array to list*/
+      myList.push_back(arr[i]);             
+  write_list();
+  cout << "\n\n";
+  cout << search_count(59);
     /* int s = 37;
     cout << linear_search(s) << "\n\n";*/
 	}
