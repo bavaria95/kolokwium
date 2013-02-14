@@ -30,7 +30,14 @@ void write_array()               /*write array's elements*/
 	cout << "\n\n";
 	}
 
-void bubble_sort(int arr[], int n)      /*sorting array with bubble sort*/
+void write_list()                 /*write list's elements*/
+{
+  for (pointer = myList.begin(); pointer != myList.end(); pointer++)
+      cout << *pointer << " ";
+  cout << "\n\n";
+  }
+
+void bubbleSort_basic(int arr[], int n)      /*sorting array with bubble sort algorithm*/
 {   
 	for(int i = n - 2; i >= 0; i--)   
     	for(int j = 0; j <= i; j++)  
@@ -38,7 +45,14 @@ void bubble_sort(int arr[], int n)      /*sorting array with bubble sort*/
 				swap(arr[j], arr[j+1]);
 	}
 
-void quickSort_basic(int arr[], int begin, int end)       /*sorting array with quick sort*/
+void bubbleSort()                         /*call function bubble sort*/
+{
+  bubbleSort_basic(arr, n);
+  for (int i = 0; i < n/2; i++)
+    swap(arr[i], arr[n - i - 1]);
+  }
+
+void quickSort_basic(int arr[], int begin, int end)       /*sorting array with quick sort algorithm*/
 {
       int i = begin, j = end;
       int pivot = arr[begin + (end - begin)/2]; 
@@ -70,7 +84,7 @@ void quickSort()                  /*call function quick sort and reverse gotten 
 		swap(arr[i], arr[n - i - 1]);
 	}
 
-void SelectionSort(int *arr, int n)
+void selectionSort_basic(int *arr, int n)     /*sorting array with selection sort algorithm*/ 
 {
     for (int i = 0; i < n; i++)
     {
@@ -81,6 +95,13 @@ void SelectionSort(int *arr, int n)
         swap(arr[i], arr[m]);
       }
     }
+
+void selectionSort()                       /*call function selection sort and reverse gotten array*/
+{
+  selectionSort_basic(arr, n);
+  for (int i = 0; i < n/2; i++)
+    swap(arr[i], arr[n - i - 1]);
+  }
 
 int search_count(int target)            /*searching target value in list and return number of target's entries*/
 {
@@ -105,27 +126,21 @@ int linear_search(int target)         /*searching linearly target value in list*
   return count;
     }
 
-void write_list()                 /*write list's elements*/
+void transfer()                     /*transfer elements from array to list*/
 {
-  for (pointer = myList.begin(); pointer != myList.end(); pointer++)
-      cout << *pointer << " ";
+  for (int i = 0; i < n; i++)             
+    myList.push_back(arr[i]); 
   }
 
 int main()
 { 
 	srand(time(NULL));
 	for(int i = 0; i < n ; i++)
-        arr[i] = rand() % 101;
-    //quickSort();
-    // bubble_sort(arr, n);
-    SelectionSort(arr, n);
-    write_array();
-
-  for (int i = 0; i < n; i++)             /*transfer elements from array to list*/
-      myList.push_back(arr[i]);             
+      arr[i] = rand() % 101;
+  quickSort();                        /*change a quick sort, bubble sort or selection sort*/
+  //bubbleSort();       
+  //selectionSort();
+  write_array();
+  transfer();          
   write_list();
-  cout << "\n\n";
-  cout << search_count(59) << "\n\n";
-    /* int s = 37;
-    cout << linear_search(s) << "\n\n";*/
 	}
