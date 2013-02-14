@@ -10,9 +10,12 @@ const int n = 100;
 
 int arr[n];
 
+int target;
+
 list <int> myList;
 
 list <int>::iterator pointer;
+list <int>::iterator point;
 
 void swap(int &a, int &b)            /*swapping two elements*/
 {
@@ -37,20 +40,13 @@ void write_list()                 /*write list's elements*/
   cout << "\n\n";
   }
 
-void bubbleSort_basic(int arr[], int n)      /*sorting array with bubble sort algorithm*/
+void bubbleSort_basic()      /*sorting array with bubble sort algorithm*/
 {   
 	for(int i = n - 2; i >= 0; i--)   
     	for(int j = 0; j <= i; j++)  
-			if (arr[j] < arr[j+1])
+			 if (arr[j] < arr[j+1])
 				swap(arr[j], arr[j+1]);
 	}
-
-void bubbleSort()                         /*call function bubble sort*/
-{
-  bubbleSort_basic(arr, n);
-  for (int i = 0; i < n/2; i++)
-    swap(arr[i], arr[n - i - 1]);
-  }
 
 void quickSort_basic(int arr[], int begin, int end)       /*sorting array with quick sort algorithm*/
 {
@@ -132,15 +128,40 @@ void transfer()                     /*transfer elements from array to list*/
     myList.push_back(arr[i]); 
   }
 
+void print_1()                     /*print count of target's entries*/
+{
+  if (!linear_search(target))
+    cout << "No such number\n";
+  else
+    cout << linear_search(target) << "\n";
+  }
+
+void print_2()                    /*print count of target's entries another method*/
+{
+  if (!search_count(target))
+    cout << "No such number\n";
+  else
+    cout << search_count(target) << "\n";
+  }
+
+void fill_random()
+{
+  srand(time(NULL));
+  for(int i = 0; i < n ; i++)
+      arr[i] = rand() % 101;
+  }
+
 int main()
 { 
-	srand(time(NULL));
-	for(int i = 0; i < n ; i++)
-      arr[i] = rand() % 101;
+  fill_random();
   quickSort();                        /*change a quick sort, bubble sort or selection sort*/
-  //bubbleSort();       
+  //bubbleSort_basic();       
   //selectionSort();
   write_array();
+
   transfer();          
   write_list();
+  cout << "What number do you want to search?\n";
+  cin >> target;
+  print_2();
 	}
