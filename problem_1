@@ -15,7 +15,6 @@ int target;
 list <int> myList;
 
 list <int>::iterator pointer;
-list <int>::iterator point;
 
 void swap(int &a, int &b)            /*swapping two elements*/
 {
@@ -92,7 +91,7 @@ void selectionSort_basic(int *arr, int n)     /*sorting array with selection sor
       }
     }
 
-void selectionSort()                       /*call function selection sort and reverse gotten array*/
+void selectionSort()                      /*call function selection sort and reverse gotten array*/
 {
   selectionSort_basic(arr, n);
   for (int i = 0; i < n/2; i++)
@@ -122,13 +121,13 @@ int linear_search(int target)         /*searching linearly target value in list*
   return count;
     }
 
-void transfer()                     /*transfer elements from array to list*/
+void transfer()                      /*transfer elements from array to list*/
 {
   for (int i = 0; i < n; i++)             
     myList.push_back(arr[i]); 
   }
 
-void print_1()                     /*print count of target's entries*/
+void print_1()                      /*print count of target's entries*/
 {
   if (!linear_search(target))
     cout << "No such number\n";
@@ -144,7 +143,7 @@ void print_2()                    /*print count of target's entries another meth
     cout << search_count(target) << "\n";
   }
 
-void fill_random()
+void fill_random()               /*filling array with pseudorandom numbers*/
 {
   srand(time(NULL));
   for(int i = 0; i < n ; i++)
@@ -154,7 +153,7 @@ void fill_random()
 int main()
 { 
   fill_random();
-  quickSort();                        /*change a quick sort, bubble sort or selection sort*/
+  quickSort();                        /*choose between a quick sort, bubble sort or selection sort*/
   //bubbleSort_basic();       
   //selectionSort();
   write_array();
@@ -163,5 +162,6 @@ int main()
   write_list();
   cout << "What number do you want to search?\n";
   cin >> target;
-  print_2();
+  print_1();                            /*choose between a two searches*/
+  //print_2();
 	}
