@@ -70,32 +70,39 @@ void quickSort()                  /*call function quick sort and reverse gotten 
 		swap(arr[i], arr[n - i - 1]);
 	}
 
-bool search(int target)             /*return bool is target value in list*/
+/*void SelectionSort(int *anArray, int nSize)
 {
-  if (find(myList.begin(), myList.end(), target) != myList.end())
-    return true;
-  else
-      return false;
-  }
+    using namespace std;
+    for (int nStartIndex= 0; nStartIndex < nSize; nStartIndex++)
+    {
+        int nBestIndex = nStartIndex;
+ 
+        // Search through every element starting at nStartIndex+1
+        for (int nCurrentIndex = nStartIndex + 1; nCurrentIndex < nSize; nCurrentIndex++)
+        {
+            // Note that we are using the user-defined comparison here
+            if (anArray[nCurrentIndex] < anArray[nBestIndex]) // COMPARISON DONE HERE
+                nBestIndex = nCurrentIndex;
+        }
+ 
+        // Swap our start element with our best element
+        swap(anArray[nStartIndex], anArray[nBestIndex]);
+    }
+}
+*/
 
 int search_count(int target)
 {
   int count = 0;
   list <int>::iterator pointer;
-  pointer = myList.begin();
-  bool is = search(target);
-  if (is)
-    if (*pointer++ == target) 
+  pointer = find(myList.begin(), myList.end(), target);
+  if (*pointer == target)
+    while (*pointer == target)
     {
       count++;
-      while (*pointer == target)
-      {
-        count++;
-        pointer++;
-        }
+      pointer++;
       }
-    return is;
-
+  return count;
   }
 
 int linear_search(int target)         /*searching linearly target value in list*/ 
@@ -126,7 +133,7 @@ int main()
       myList.push_back(arr[i]);             
   write_list();
   cout << "\n\n";
-  cout << search_count(59);
+  cout << search_count(59) << "\n\n";
     /* int s = 37;
     cout << linear_search(s) << "\n\n";*/
 	}
